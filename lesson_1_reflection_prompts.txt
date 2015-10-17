@@ -1,0 +1,58 @@
+How did viewing a diff between two versions of a file help you see the bug that
+was introduced?
+
+    By concentrating on the changes made as highlighted in the diff, I can identify the bug quicker without being distracted by what remain unchanged.
+
+How could having easy access to the entire history of a file make you a more
+efficient programmer in the long term?
+
+    I can see how changes evolve and learn how to manage changes more effectively.
+
+What do you think are the pros and cons of manually choosing when to create a
+commit, like you do in Git, vs having versions automatically saved, like Google
+docs does?
+
+    Manually creating a commit allows completed works to be versioned.  Automated version commitment may save partial works.  There may be too much changes accummulated between manual commitments making it ineffective.  However, partial work in automated commitment may be difficult to interpret subsequently.
+
+Why do you think some version control systems, like Git, allow saving multiple
+files in one commit, while others, like Google Docs, treat each file separately?
+
+    If a group of related files are interpreted and work together for meaningful works, it makes sense to allow them to be saved in one commit.  Otherwise, treating each file separately would be a good practice if the changes in different files are most often unrelated.
+
+How can you use the commands git log and git diff to view the history of files?
+
+    "git log" shows all commits with comments
+    "git log --stat" additionaly provides summary ofchanges
+    "git diff %commit-1% %commit-2%" shows the details differences as to what was added to and removed from %commit-1% to get %commit-2%
+    "git clone https://..." change to the local directory to store a local copy before issuing this command to get a remote repository
+    "git config -- global color.ui auto" to show ++ and -- changes in different colours.
+
+
+
+How might using version control make you more confident to make changes that could break something?
+
+    "git checkout" sets all the files to a particular commit to find where the bug was first introduced and then let one focus on the changes made that introduced the bug.
+
+Now that you have your workspace set up, what do you want to try using Git for?
+
+    JavaScript projects
+
+Others:
+
+Making Git configurations
+
+Run the following Git configuration commands. The first one will need to be modified if you are using a text editor other than Sublime, or if Sublime is installed in another location for you. See this page for the correct command for a couple of other popular text editors. For any other editor, you'll need to enter the command you use to launch that editor from Git Bash.
+
+git config --global core.editor "'C:/Program Files/Sublime Text 2/sublime_text.exe' -n -w"
+git config --global push.default upstream
+git config --global merge.conflictstyle diff3
+Make sure you can start your editor from Git Bash
+
+If you use Sublime, you can do this by adding the following line to your .bash_profile:
+
+alias subl="C:/Program\ Files/Sublime\ Text\ 2/sublime_text.exe"
+
+Other commands:
+"git init" gives the message initialized empty Git repository in ...
+"git status" to know what happens to the local copies wrt the repository
+... say show me the untracked files.
