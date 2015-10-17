@@ -21,3 +21,11 @@ the diagram the way we do?
 
 What are the pros and cons of Git’s automatic merging vs. always doing merges
 manually?
+
+Others
+======
+"git diff" compares the working directory and the staging area
+"git diff -staged" compares the staging area and the repository's most recent commit
+"git diff commit1 commit2" compares the two commits
+"git reset HEAD [file-X]" removes [file-X] from the staging area.
+"git checkout -- [file]" discards the changes of the [file] and restores the last committed version
