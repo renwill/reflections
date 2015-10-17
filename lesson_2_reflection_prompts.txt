@@ -10,6 +10,7 @@ What value do you think it offers?
 It allows a set of related changes to be grouped together to reflect a logical change and commit in the repository
 
 How can you use the staging area to make sure you have one commit per logical change?
+Use "git add" to add all the files of the logical changes to the staging area and use  "git reset HEAD" to remove any accidental addition from the staging area before issuing the "git commit" command.
 
 What are some situations when branches would be helpful in keeping your history
 organized? How would branches help?
