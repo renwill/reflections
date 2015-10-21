@@ -38,10 +38,20 @@ Others
 "git checkout <filename>" vs "git checkout -- <filename>"
 The special "option" -- means "treat every argument after this point as a file name, no matter what it looks like." This is not Git-specific, it's a general Unix command line convention. Git uses it to distinguish file names from branch names. In Unix, you need it when the file you want to revert has a name that begins with -.
 
+Using “git commit -a”
+If you intend that your next commit should record all modifications of tracked files in the working tree and record all removals of files that have been removed from the working tree with rm (as opposed to git rm), use git commit -a, as it will automatically notice and record all removals.
+
 If you make an initial commit and then realize you forgot to stage the changes in a file you wanted to add to this commit, you can do something like this:
 $ git commit -m 'initial commit'
 $ git add forgotten_file
 $ git commit --amend
+
+Using “git add -A”
+When accepting a new code drop for a vendor branch, you probably want to record both the removal of paths and additions of new paths as well as modifications of existing paths. Typically you would first remove all tracked files from the working tree using this command:
+       git ls-files -z | xargs -0 rm -f
+and then untar the new code in the working tree. Alternately you could rsync the changes into the working tree. After that, the easiest way to record all removals, additions, and modifications in the working tree is:    git add -A
+
+"git rm [-f]  [-r] [--cached] [--] <file>…​" removes files from the index (--cached), or from the working tree and the index (-r: recursively for directories). 
 
 "git branch 'branch-name' then git checkout 'branch-name'" creates a branch and change working directory to point to the branch head. 
 
