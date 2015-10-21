@@ -56,3 +56,69 @@ Other commands:
 "git init" gives the message initialized empty Git repository in ...
 "git status" to know what happens to the local copies wrt the repository
 ... say show me the untracked files.
+
+git reset per https://git-scm.com/blog
+HEAD - last commit snapshot, next parent
+Index (staging area) - proposed next commit snapshot
+
+HEAD example:
+$ cat .git/HEAD 
+ref: refs/heads/master
+$ cat .git/refs/heads/master 
+e9a570524b63d2a2b3a7c3325acf5b89bbeb131e
+$ git cat-file -p e9a570524b63d2a2b3a7c3325acf5b89bbeb131e
+tree cfda3bf379e4f8dba8717dee55aab78aef7f4daf
+author Scott Chacon  1301511835 -0700
+committer Scott Chacon  1301511835 -0700
+initial commit
+$ git ls-tree -r cfda3bf379e4f8dba8717dee55aab78aef7f4daf
+100644 blob a906cb2a...   README
+100644 blob 8f941393...   Rakefile
+040000 tree 99f1a6d1...   lib
+
+Index Example (staging area):
+$ git ls-files -s
+100644 a906cb2a... 0   README
+100644 8f941393... 0   Rakefile
+100644 47c6340d... 0   lib/simplegit.rb
+
+git reset [option] 'commit' will move the HEAD to the 'commit'
+git reset [option] HEAD~ will move the HEAD to the parent of HEAD, undoing the last commit made
+
+Commit Level              head      index work-dir
+git reset --soft [commit] REF(YES)  NO    NO
+git reset [commit]        REF(YES)  YES   NO
+git reset --hard [commit] REF(YES)  YES   YES
+git checkout [commit]     HEAD(NO)  YES   YES
+
+File Level(options irrelevant) head  Index work-dir
+git reset (commit) [file]      NO    YES   NO
+git checkout (commit) [file]   NO    YES   YES
+(YES means 'changed' and NO means 'not changed')
+
+http://schacon.github.io/git/git-rev-parse#_specifying_revisions
+<rev>^<n> : the <n> parent fr left to right of <rev>
+<rev>~<n> : the <n> generation leftmost grand-parent of <rev>
+HEAD^ means the first parent of the tip of the current branch; HEAD^ is short for HEAD^1; master~2 means the grandparent of the tip of the master branch
+ Both commit nodes B and C are parents of commit node A. Parent commits are ordered left-to-right.
+
+G   H   I   J
+ \ /     \ /
+  D   E   F
+   \  |  / \
+    \ | /   |
+     \|/    |
+      B     C
+       \   /
+        \ /
+         A
+A =      = A^0
+B = A^   = A^1     = A~1
+C = A^2  = A^2
+D = A^^  = A^1^1   = A~2
+E = B^2  = A^^2
+F = B^3  = A^^3
+G = A^^^ = A^1^1^1 = A~3
+H = D^2  = B^^2    = A^^^2  = A~2^2
+I = F^   = B^3^    = A^^3^
+J = F^2  = B^3^2   = A^^3^2
