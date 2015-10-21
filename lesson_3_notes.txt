@@ -1,0 +1,4 @@
+"git remote -v": list all remotes with verbose output
+"git remote add origin <url-for-github-remote-repository>": name the remote for the github-url-repository
+"git push <remote-name> <local-branch-name>": push the local branch to the github remote
+"git pull <remote-name> <remote-branch-name>": pull the remote branch specified in the command of the "remote-name> representing the github repository in with the remote branch is present.
